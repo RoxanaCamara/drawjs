@@ -26,11 +26,17 @@ class AgentDot {
     context.stroke();
     context.restore();
   }
+
+  update() {
+    this.pos.x += this.vel.x;
+    this.pos.y += this.vel.y;
+  }
 }
 
 const Scketch_06 = () => {
   const settings = {
     dimensions: [2048, 2048],
+    animate: true,
   };
 
   const canvasRef = useRef(null);
@@ -55,6 +61,7 @@ const Scketch_06 = () => {
       const dots = createDots(width, height);
 
       dots.forEach((agent) => {
+        agent.update();
         agent.draw(context);
       });
     };
