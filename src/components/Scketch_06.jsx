@@ -1,7 +1,32 @@
 import canvasSketch from "canvas-sketch";
 import { useEffect, useRef } from "react";
-import { AgentDot } from "./class/Point";
 import { random } from "canvas-sketch-util";
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class AgentDot {
+  constructor(x, y) {
+    this.pos = new Point(x, y);
+    this.vel = new Point(random.range(-1, 1), random.range(-1, 1));
+    this.radius = random.range(4, 12);
+  }
+
+  draw(context) {
+    context.save();
+    context.translate(this.pos.x, this.pos.y);
+    context.lineWidth = 4;
+    context.beginPath();
+    context.arc(0, 0, this.radius, 0, Math.PI * 5);
+    context.fill();
+    context.stroke();
+    context.restore();
+  }
+}
 
 const Scketch_06 = () => {
   const settings = {
