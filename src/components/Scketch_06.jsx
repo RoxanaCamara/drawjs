@@ -45,6 +45,7 @@ const Scketch_06 = () => {
   };
 
   const canvasRef = useRef(null);
+  const agentsRef = useRef([]);
 
   const createDots = (width, height) => {
     const agents = [];
@@ -55,25 +56,30 @@ const Scketch_06 = () => {
 
       agents.push(new AgentDot(x, y));
     }
-    return agents;
-  };
-
-  const sketch = () => {
-    return ({ context, width, height }) => {
-      context.fillStyle = "white";
-      context.fillRect(0, 0, width, height);
-
-      const dots = createDots(width, height);
-
-      dots.forEach((agent) => {
-        agent.update();
-        agent.draw(context);
-        agent.bounce(width, height);
-      });
-    };
+    agentsRef.current = agents;
   };
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    const width = (canvas.width = window.innerWidth);
+    const height = (canvas.height = window.innerHeight);
+
+    createDots(width, height);
+
+    const sketch = () => {
+      return ({ context, width, height }) => {
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = "white";
+        context.fillRect(0, 0, width, height);
+
+        agentsRef.current.forEach((agent) => {
+          agent.update();
+          agent.draw(context);
+          agent.bounce(width, height);
+        });
+      };
+    };
+
     canvasSketch(sketch, {
       ...settings,
       canvas: canvasRef.current,
