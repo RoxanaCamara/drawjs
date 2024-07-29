@@ -88,7 +88,6 @@ const Scketch_01 = () => {
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
     const width = 2048;
     const height = 2048;
 
