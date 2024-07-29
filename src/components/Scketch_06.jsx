@@ -61,8 +61,8 @@ const Scketch_06 = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const width = (canvas.width = window.innerWidth);
-    const height = (canvas.height = window.innerHeight);
+    const width = 2048;
+    const height = 2048;
 
     createDots(width, height);
 
