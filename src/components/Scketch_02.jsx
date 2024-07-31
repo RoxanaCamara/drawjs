@@ -32,9 +32,9 @@ class Effect {
     this.value = random.range(0, -this.h * 0.5);
     this.line = random.range(5, 20);
 
-    (this.a1 = this.radius * random.range(0.7, 1.3)),
-      (this.a2 = this.slice * random.range(1, -8)),
-      (this.a3 = this.slice * random.range(1, 5));
+    this.a1 = this.radius * random.range(0.7, 1.3);
+    this.a2 = this.slice * random.range(1, -8);
+    this.a3 = this.slice * random.range(1, 5);
   }
 
   draw(context) {
