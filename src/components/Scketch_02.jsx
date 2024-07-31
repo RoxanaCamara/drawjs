@@ -19,24 +19,32 @@ class Effect {
     this.cx = width * 0.5;
     this.cy = height * 0.5;
 
-    this.framesPerSecond = 60; // Asumiendo 60 FPS
-    this.speedFactor = (2 * Math.PI) / (this.framesPerSecond * 10);
+    this.cx = width * 0.5;
+    this.cy = height * 0.5;
+
+    this.x = this.cx + this.radius * Math.sin(this.angle);
+    this.y = this.cy + this.radius * Math.cos(this.angle);
+    this.w = this.width * 0.01;
+    this.h = this.height * 0.1;
+
+    this.scaleX = random.range(0.1, 2);
+    this.scaleY = random.range(0.2, 0.5);
+    this.value = random.range(0, -this.h * 0.5);
+    this.line = random.range(5, 20);
+
+    (this.a1 = this.radius * random.range(0.7, 1.3)),
+      (this.a2 = this.slice * random.range(1, -8)),
+      (this.a3 = this.slice * random.range(1, 5));
   }
 
   draw(context) {
-    this.angle += this.speedFactor;
-    let x = this.cx + this.radius * Math.sin(this.angle);
-    let y = this.cy + this.radius * Math.cos(this.angle);
-    let w = this.width * 0.01;
-    let h = this.height * 0.1;
-
     context.save();
-    context.translate(x, y);
+    context.translate(this.x, this.y);
     context.rotate(-this.angle);
-    context.scale(random.range(0.1, 2), random.range(0.2, 0.5));
+    context.scale(this.scaleX, this.scaleY);
 
     context.beginPath();
-    context.rect(-w * 0.5, random.range(0, -h * 0.5), w, h);
+    context.rect(-this.w * 0.5, this.value, this.w, this.h);
     context.fill();
     context.restore();
 
@@ -44,15 +52,9 @@ class Effect {
     context.translate(this.cx, this.cy);
     context.rotate(-this.angle);
 
-    context.lineWidth = random.range(5, 20);
+    context.lineWidth = this.line;
     context.beginPath();
-    context.arc(
-      0,
-      0,
-      this.radius * random.range(0.7, 1.3),
-      this.slice * random.range(1, -8),
-      this.slice * random.range(1, 5)
-    );
+    context.arc(0, 0, this.a1, this.a2, this.a3);
     context.stroke();
 
     context.restore();
@@ -101,7 +103,7 @@ const Scketch_02 = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       circleEffectRef.current.create();
-    }, 1000);
+    }, 100);
 
     const sketch = () => {
       return ({ context, width, height }) => {
