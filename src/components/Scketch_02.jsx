@@ -70,13 +70,10 @@ class CircleEffect {
 
   create() {
     let NUM = 40;
-    let list = [];
+    this.effect = [];
     for (let i = 0; i < NUM; i++) {
-      let n = new Effect(i, this.width, this.height, NUM);
-      list.push(n);
+      this.effect.push(new Effect(i, this.width, this.height, NUM));
     }
-
-    this.effect = list;
   }
 
   draw(context) {
