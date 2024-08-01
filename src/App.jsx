@@ -9,13 +9,33 @@ import Scketch_06 from "./components/Scketch_06";
 function App() {
   return (
     <>
-      <Scketch_06 />
-      {/***
-			<Scketch_01 />
-			<Scketch_03 />
-			<Scketch_04 />
-			<Scketch_05 /> 
-			*/}
+      <div>
+        <h2>Sketch 1</h2>
+        <Scketch_01 />
+      </div>
+
+      <div>
+        <h2>Sketch 2</h2>
+        <Scketch_02 />
+      </div>
+      <div>
+        <h2>Sketch 3</h2>
+        <Scketch_03 />
+      </div>
+
+      {/**<div>
+        <h2>Sketch 4</h2>
+        <Scketch_04 />
+      </div> */}
+      <div>
+        <h2>Sketch 5</h2>
+        <Scketch_05 />
+      </div>
+
+      <div>
+        <h2>Sketch 6</h2>
+        <Scketch_06 />
+      </div>
     </>
   );
 }
